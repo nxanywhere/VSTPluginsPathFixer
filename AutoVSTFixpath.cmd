@@ -22,49 +22,45 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 :--------------------------------------
 title Adding Registry keys....
-REG ADD HKLM\Software\VST /v VSTPluginsPath /t REG_SZ /d C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-REG ADD HKLM\Software\VST3 /v VST3PluginsPath /t REG_SZ /d C:\\Program Files\\Common Files\\Audio Plug-ins\\VST3
-REG ADD HKLM\Software\WOW6432Node\VST /v VSTPluginsPath /t REG_SZ /d C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
-REG ADD HKLM\Software\WOW6432Node\VST3 /v VSTPluginsPath /t REG_SZ /d C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST3
+REG ADD "HKLM\Software\VST" /v "VSTPluginsPath" /t REG_SZ /d "C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2"
+REG ADD "HKLM\Software\VST3" /v "VST3PluginsPath" /t REG_SZ /d "C:\\Program Files\\Common Files\\Audio Plug-ins\\VST3"
+REG ADD "HKLM\Software\WOW6432Node\VST" /v "VSTPluginsPath" /t REG_SZ /d "C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2"
+REG ADD "HKLM\Software\WOW6432Node\VST3" /v "VSTPluginsPath" /t REG_SZ /d "C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST3"
 
-mkdir C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-mkdir C:\\Program Files\\Common Files\\Audio Plug-ins\\VST3
-mkdir C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
-mkdir C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST3 
+mkdir "C:\Program Files\Common Files\Audio Plug-ins\VST2"
+mkdir "C:\Program Files\\Common Files\Audio Plug-ins\VST3"
+mkdir "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST2"
+mkdir "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST3" 
 
 title Moving VST2 Path.....
 echo Moving VST2 (64bit) to New location...
-cd C:\\Program Files\\VSTPlugins
-move "*" C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files\\Steinberg\\VSTPlugins
-move "*" C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files\\Common Files\\VST
-move "*" C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files\\Cakewalk\\VSTPlugins
-move "*" C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files\\VST
-move "*" C:\\Program Files\\Common Files\\Audio Plug-ins\\VST2
-
+cd "C:\Program Files\VSTPlugins"
+move "*" "C:\Program Files\Common Files\Audio Plug-ins\VST2"
+cd "C:\Program Files\Steinberg\VSTPlugins"
+move "*" "C:\Program Files\Common Files\Audio Plug-ins\VST2"
+cd "C:\Program Files\Common Files\VST"
+move "*" "C:\Program Files\Common Files\Audio Plug-ins\VST2"
+cd "C:\Program Files\VST"
+move "*" "C:\Program Files\Common Files\Audio Plug-ins\VST2"
+rem
 echo Moving VST2 (32bit) to New location...
-cd C:\\Program Files (x86)\\VSTPlugins
-move "*" C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files (x86)\\Steinberg\\VSTPlugins
-move "*" C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files (x86)\\Common Files\\VST
-move "*" C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files (x86)\\Cakewalk\\VSTPlugins
-move "*" C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
-cd C:\\Program Files (x86)\\VST
-move "*" C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST2
+cd "C:\Program Files (x86)\VSTPlugins"
+move "*" "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST2"
+cd "C:\Program Files (x86)\Steinberg\VSTPlugins"
+move "*" "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST2"
+cd "C:\Program Files (x86)\Common Files\VST"
+move "*" "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST2"
+cd "C:\Program Files (x86)\VST"
+move "*" "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST2"
 
 title Moving VST3 Path.... 
 echo Moving VST3 (64bit) to New location...
-cd C:\\Program Files\\Common Files\\VST3
-move "*" C:\\Program Files\\Common Files\\Audio Plug-ins\\VST3
+cd "C:\Program Files\Common Files\VST3"
+move "*" "C:\Program Files\Common Files\Audio Plug-ins\VST3"
 
 echo Moving VST3 (32bit) to New location...
-cd C:\\Program Files (x86)\\Common Files\\VST3
-move "*" C:\\Program Files (x86)\\Common Files\\Audio Plug-ins\\VST3
+cd "C:\Program Files (x86)\Common Files\VST3"
+move "*" "C:\Program Files (x86)\Common Files\Audio Plug-ins\VST3"
 
 echo done!!! 
 pause
@@ -78,7 +74,7 @@ if /I "%c%" EQU "N" goto :somewhere_else
 echo --------------------------------------
 echo Fixing......
 echo --------------------------------------
-REG Add HKLM\SOFTWARE\Image-Line\Shared\Paths /v "VST Plugins" /t REG_SZ /d "C:\Program Files\Common Files\Audio Plug-ins\VST2"
+REG Add "HKLM\SOFTWARE\Image-Line\Shared\Paths" /v "VST Plugins" /t REG_SZ /d "C:\Program Files\Common Files\Audio Plug-ins\VST2"
 echo Done!!
 echo in Other DAW your can setting vstpath in preferences, Enjoy!
 pause
@@ -86,3 +82,7 @@ pause
 :somewhere_else
 echo in Other DAW your can setting vstpath in preferences, Enjoy!
 pause
+goto EOF
+
+:EOF
+exit
